@@ -1,0 +1,20 @@
+name: face_scan
+description: Android face scanning plugin with camera preview and real-time measurement events.
+version: 0.1.0
+homepage: https://gpfn.pdfreadertools.com/03TY2X/chrot
+repository: https://gpfn.pdfreadertools.com/03TY2X/chrot
+
+environment:
+  sdk: ^3.13.5
+  flutter: '>=3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: dev.facescan.core
+        pluginClass: FaceScanPlugin
