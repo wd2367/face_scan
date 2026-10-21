@@ -1,21 +1,80 @@
 # face_scan
 
-Android 人脸扫描插件，提供相机预览、测量控制和状态事件。当前仅在本地使用，不发布到插件库。
+Android 人脸扫描插件，提供相机预览、测量控制和状态事件。
 
-## 接口
+## 功能特性
 
-- `FaceScanner`：初始化、开始、暂停、恢复、停止及释放会话。
-- `FaceScanPreview`：原生相机预览组件。
-- `FaceScanEvent` / `FaceScanPhase`：扫描状态、进度及结果。
+- 📷 原生相机预览组件
+- 🎯 人脸扫描与测量控制
+- 📊 实时状态事件回调
+- ⚡ 支持暂停、恢复和停止操作
 
-接入前由宿主申请相机权限。先订阅事件，再启动测量；取消订阅后调用 `dispose()` 释放资源。插件仅支持单会话。
+## 系统要求
 
-Flutter 接口与 Android 实现需配套使用，通信通道和预览标识是内部约定，接入者无需修改。
+- Android API 24 及以上
+- Flutter 3.0.0 及以上
 
-结果包含基于信号及个人资料计算的健康估算值，不代表直接传感器测量或医学诊断。
+## 安装
 
-## 当前范围
+在 `pubspec.yaml` 中添加依赖：
 
-Android API 24 及以上，依赖 CameraX、ML Kit、Java 17 和 AGP 9 工具链。具体依赖版本见 `pubspec.yaml` 和 `android/build.gradle`。
+```yaml
+dependencies:
+  face_scan: ^0.1.1
+```
 
-本目录目前仍包含原生源码，尚未进行混淆或二进制交付隔离。
+## 使用方法
+
+### 1. 申请相机权限
+
+在使用插件前，需要由宿主应用申请相机权限。
+
+### 2. 初始化和使用
+
+```dart
+import 'package:face_scan/face_scan.dart';
+
+// 订阅扫描事件
+final subscription = FaceScanner.events.listen((event) {
+  print('扫描阶段: ${event.phase}');
+  print('进度: ${event.progress}');
+  if (event.result != null) {
+    print('扫描结果: ${event.result}');
+  }
+});
+
+// 初始化
+await FaceScanner.initialize();
+
+// 开始扫描
+await FaceScanner.start();
+
+// 暂停
+await FaceScanner.pause();
+
+// 恢复
+await FaceScanner.resume();
+
+// 停止
+await FaceScanner.stop();
+
+// 释放资源
+await FaceScanner.dispose();
+subscription.cancel();
+```
+
+### 3. 相机预览
+
+```dart
+FaceScanPreview()
+```
+
+## 注意事项
+
+- 插件仅支持单会话，同时只能有一个扫描实例
+- 取消订阅后需调用 `dispose()` 释放资源
+- Flutter 接口与 Android 实现需配套使用
+
+## 许可证
+
+MIT License

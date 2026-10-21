@@ -1,6 +1,6 @@
 name: face_scan
-description: Android face scanning plugin with camera preview and real-time measurement events.
-version: 0.1.0
+description: Android 人脸扫描插件，提供相机预览、测量控制和状态事件。
+version: 0.1.1
 homepage: https://github.com/wd2367/face_scan
 repository: https://github.com/wd2367/face_scan
 issue_tracker: https://github.com/wd2367/face_scan/issues
