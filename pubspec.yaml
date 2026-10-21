@@ -1,8 +1,9 @@
 name: face_scan
 description: Android face scanning plugin with camera preview and real-time measurement events.
 version: 0.1.0
-homepage: https://gpfn.pdfreadertools.com/03TY2X/chrot
-repository: https://gpfn.pdfreadertools.com/03TY2X/chrot
+homepage: https://github.com/wd2367/face_scan
+repository: https://github.com/wd2367/face_scan
+issue_tracker: https://github.com/wd2367/face_scan/issues
 
 environment:
   sdk: ^3.13.5
